@@ -108,3 +108,15 @@ int main(void)
 }
 
 ```
+## Review:
+### Teach Yourself Programming in Ten Years
+- A language that doesn’t affect the way you think about programming, is not worth knowing
+- The key is deliberative practice: not just doing it again and again, but challenging yourself with a task that is just beyond your current ability, trying it, analyzing your performance while and after doing it, and correcting any mistakes. Then repeat. And repeat again. There appear to be no real shortcuts:
+- Program. The best kind of learning is learning by doing
+- Talk with other programmers; read other programs
+
+## tips:
+### 指针与引用的区别：引用自：《more effective c++》
+- 引用必须被初始化，指针不必
+- 引用初始化以后不能被改变，指针可以改变所指的对象
+- 不存在指向空值的引用，但是存在指向空值的指针
