@@ -115,8 +115,31 @@ int main(void)
 - Program. The best kind of learning is learning by doing
 - Talk with other programmers; read other programs
 
-## tips:
+## tip:
 ### 指针与引用的区别：引用自：《more effective c++》
 - 引用必须被初始化，指针不必
 - 引用初始化以后不能被改变，指针可以改变所指的对象
 - 不存在指向空值的引用，但是存在指向空值的指针
+```
+std::string s1("hello");
+std::string s2("world");
+std::cout <<  "point s1: " << &s1 << " point s2: " << &s2 << std::endl;
+std::string& ref = s1;
+std::string* point = &s1;
+std::cout << "refs: " << ref << " "<<  &ref <<
+" points: " << *point << " " << point <<  std::endl;
+ref = s2;
+point = &s2;
+std::cout << "refs: " << ref << " " << &ref <<
+" points: " << *point << " " << point << std::endl;
+```
+
+## Share:
+### 用条件变量实现事件等待器的正确与错误做法 https://blog.csdn.net/Solstice/article/details/11432817
+
+- 本篇文章讲解了条件变量的正确使用方式
+### 条件变量的虚假唤醒？
+- 因为可能某次操作系统唤醒 pthread_cond_wait 时 tasks.empty() 可能仍然为 true，言下之意就是操作系统可能会在一些情况下唤醒条件变量，即使没有其他线程向条件变量发送信号，等待此条件变量的线程也有可能会醒来。我们将条件变量的这种行为称之为 虚假唤醒 （spurious wakeup）。因此将条件（判断tasks.empty() 为true）放在一个 while 循环中意味着光唤醒条件变量不行，还必须条件满足程序才能继续执行正常的逻辑。
+### 为什么会存在虚假唤醒呢？一个原因是
+pthread_cond_wait 是 futex 系统调用，属于阻塞型的系统调用，当系统调用被信号中断的时候，会返回 -1，并且把 errno 错误码置为EINTR。很多这种系统调用为了防止被信号中断都会重启系统调用（即再次调用一次这个函数）
+除了上面的信号因素外，还存在以下情况：条件满足了发送信号，但等到调用 pthread_cond_wait 的线程得到 CPU 资源时，条件又再次不满足了。好在无论是哪种情况，醒来之后再次测试条件是否满足就可以解决虚假等待的问题。这就是使用 while 循环来判断条件，而不是使用 if 语句的原因。
