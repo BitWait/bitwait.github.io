@@ -15,7 +15,7 @@ sass:
 
 permalink: /posts/:title/
 texture:
-  title: Adam Denisov
+  title: LvYong
   tagline: Developer. Designer
   date_format: "%b %-d, %Y"
   style: black
@@ -24,9 +24,9 @@ texture:
 
   # generate social links in footer
   social_links:
-    twitter: thelehhman
-    github:  thelehhman
-    linkedIn: in/thelehhman
+    twitter: 
+    github:  bitwait
+    linkedIn: 
     rss: rss
  
 
