@@ -4,6 +4,10 @@ title:  "Plastic Compression"
 description: ARTS for week 1.
 date:   2020-06-02 21:03:36 +0530
 ---
+- Algorithms Plastic Compression
+- Review Teach Yourself Programming in Ten Years
+- Tip 指针与引用的区别
+- Share 用条件变量实现事件等待器的正确与错误做法
 
 ##  Algorithm:
 ### 背景：
